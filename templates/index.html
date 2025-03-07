@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Minutes Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Meeting Minutes Generator</h1>
+            <p class="subtitle">Record your meeting and get an AI-generated summary with action items</p>
+        </header>
+
+        <div class="card recorder-card">
+            <div class="recorder-header">
+                <div class="status-container">
+                    <span id="status-badge" class="badge">Ready</span>
+                    <span id="status-text" class="status-text">Ready to record</span>
+                </div>
+                <button id="record-button" class="button primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" x2="12" y1="19" y2="22"></line>
+                    </svg>
+                    Start Recording
+                </button>
+            </div>
+            <div id="progress-container" class="progress-container hidden">
+                <div class="progress-info">
+                    <span id="recording-time">Recording: 0s</span>
+                    <span id="recording-limit">0/60s</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab-header">
+                <button id="transcript-tab" class="tab-button active">Transcript</button>
+                <button id="summary-tab" class="tab-button">Meeting Minutes</button>
+            </div>
+            
+            <div id="transcript-content" class="tab-content active">
+                <div class="card">
+                    <h2>Transcript</h2>
+                    <div id="transcript-box" class="content-box">
+                        <p class="placeholder-text">Transcript will appear here after recording</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="summary-content" class="tab-content">
+                <div class="card">
+                    <div class="summary-header">
+                        <h2>Meeting Minutes</h2>
+                        <div class="button-group">
+                            <button id="copy-button" class="button small outline" disabled>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <button id="download-button" class="button small outline" disabled>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" x2="12" y1="15" y2="3"></line>
+                                </svg>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-section">
+                        <h3>Main Discussion Points:</h3>
+                        <div id="summary-points" class="content-box">
+                            <p class="placeholder-text">Summary will appear here after recording</p>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="summary-section">
+                        <div class="action-header">
+                            <h3>Action Items:</h3>
+                            <button id="add-action-button" class="button ghost small">+ Add Item</button>
+                        </div>
+                        <div class="content-box">
+                            <ul id="action-items" class="action-list">
+                                <!-- Action items will be added here by JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+
+
